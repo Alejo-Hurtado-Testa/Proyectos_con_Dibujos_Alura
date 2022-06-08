@@ -1,0 +1,39 @@
+<canvas width="600" height="400"></canvas>
+	
+
+<script>
+	
+	var pantalla = document.querySelector("canvas");
+	var pincel = pantalla.getContext("2d");
+	
+	pincel.fillStyle = "lightgrey";
+	pincel.fillRect(0, 0, 600, 400);
+		
+	function diseniarCicuferencia(x, y, radio) {
+
+		pincel.fillStyle = "blue";
+		pincel.beginPath();
+		pincel.arc(x, y, radio, 0, 2*Math.PI); // CON EL Math.PI, utilizamos el valorr de PI (3,14);
+		pincel.fill();
+
+	}
+
+	function limpiarPantalla() {
+		// ESTA INSTRUCCION LO QUE HACE ES LIMPIAR LA PANTALLA. COMO PARAMETROS LE PASAMOS LAS MISMAS COORDENADAS QUE NUESTRO CANVAS.
+		pincel.clearRect(0, 0, 600, 400);
+	}
+
+	var x = 0;
+
+	function actualizarPantalla() {
+		limpiarPantalla();
+		diseniarCicuferencia(x, 20, 10);
+		x++;
+	}
+
+	// ESTA INSTRUCCION SIRVE PARA SELECCIONAR UN INTERVALO DE MILISEGUNDOS, ESTO SIGNIFICA QUE SE EJECUTA CADA CIERTO MILISEGUNDO, PRIMERO PONEMOS LA FUNCIO Y SEPARADO CON UNA COMA LOS MILISEGUNDOS CADA CUANTO QUEREMOS QUE SE REPITA.
+	// AL NO PONERLE LOS  PARENTESIS A LA FUNCIO, LA ESTAMOS PASANDO COMO ARGUMENTO, PARA QUE EL setInterval, LLAME A ESA FUNCION EL MISMO PARA PODER EJECUTARLA EN EL MOMENTO EXACTO.
+	setInterval(actualizarPantalla, 100);	
+
+
+</script>

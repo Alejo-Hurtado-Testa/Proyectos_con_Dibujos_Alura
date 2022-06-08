@@ -1,0 +1,37 @@
+<canvas width="600" height="400"></canvas>
+	
+
+<script>
+	
+	var pantalla = document.querySelector("canvas");
+	var pincel = pantalla.getContext("2d");
+	
+	pincel.fillStyle = "grey";
+	pincel.fillRect(0, 0, 600, 400);
+		
+	function exibirAlerta(evento) {
+		// ACA LO QUE HACEMOS BASICAMENTE ES TRAER LA POSICION DONDE HICIMOS CLICK, PERO ES POSICION ES DE TODA LA PANTALLA COMPLETA, PARA CONTRARESTAR ESO Y TRAER LAS COORDENADAS DE SOLAMENTE EL CANVAS, DE LA VARIABLE PANTALLA, DONDE ESTA EL CANVAS, HACEMOS: pantalla.offsetLeft y .offsetTop, ESTO LO QUE VA A HACER ES SACARLE LO QUE NOS QUEDA A LA IZQUIERDA Y ARRIBA, PARA PODER UTILIZAR SOLAMENTE EL CANVAS
+		var x = evento.pageX - pantalla.offsetLeft;
+		var y = evento.pageY - pantalla.offsetTop;
+
+		alert("Las coordenadas son: " + x + " y " + y);
+	}
+	
+	function dibujarCirculo(evento) {
+		
+		var x = evento.pageX - pantalla.offsetLeft;
+		var y = evento.pageY - pantalla.offsetTop;
+
+		pincel.fillStyle = "blue";
+		pincel.beginPath();
+		pincel.arc(x, y, 10, 0, 2*3.14);
+		pincel.fill();
+
+	}
+
+
+	//pantalla.onclick = exibirAlerta;
+	pantalla.onclick = dibujarCirculo;
+
+
+</script>

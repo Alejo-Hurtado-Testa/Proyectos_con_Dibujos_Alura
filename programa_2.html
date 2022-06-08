@@ -1,0 +1,41 @@
+<canvas width="600" height="400"></canvas>
+	
+
+<script>
+	
+	function dibujarCuadrado(x, y, color) {
+		// Si queremos utilizar una funcion debemos poner las variables dentro de la funcion misma.
+		var pantalla = document.querySelector("canvas");
+		var pincel = pantalla.getContext("2d");
+	
+		pincel.fillStyle = color; //No hace falta definirlo 2 veces si queremos usar un mismo color en todos.
+		pincel.fillRect(x, y, 50, 50);
+		// ESTE CODIGO ES PARA HACER UN BORDE (LINEA) AL REDEDOR DE UN CUADRADO. LE PASAMOS LAS MISMAS COORDENADAS QUE EL CUADRO YA HECHO.
+		pincel.strokeStyle = "black"; //No hace falta escribirla dos veces si el color que queremos es negro.
+		pincel.strokeRect(x, y, 50, 50);
+
+	}
+
+	//PARA NO REPETIR CODIGO Y RELLENAR EL CANVAS EN SU TOTALIDAD.
+
+	/*
+
+	// Con WHILE.
+	var x = 0;
+	while(x < 600){
+
+		dibujarCuadrado(x, 0, "green");
+		x += 50;
+
+	}
+	
+	*/
+
+	// Con FOR.
+	for (var x = 0; x < 600; x += 50) {
+		dibujarCuadrado(x, 0, "blue");
+		dibujarCuadrado(x, 50, "yellow");
+		dibujarCuadrado(x, 100, "blue");
+	}
+
+</script>

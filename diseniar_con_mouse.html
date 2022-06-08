@@ -1,0 +1,99 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var pantalla = document.querySelector('canvas');
+    var pincel = pantalla.getContext('2d');
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    var puedoDibujar = false;
+    var color = "blue";
+
+    function seleccionarColor(x, y, color) {
+    	pincel.fillStyle = color;
+    	pincel.fillRect(x, y, 50, 50);
+    }
+
+    function dibujarCirculo(x, y, color) {
+
+        if(puedoDibujar) {
+            pincel.fillStyle = color;
+            pincel.beginPath();
+            pincel.arc(x, y, 5, 0, 2 * 3.14);
+            pincel.fill();
+        }
+
+    }
+
+    // ACA LO QUE HACEMOS ES CAPTURAR EL CLICK DEL MOUSE PARA PODER CAMBIAR DE COLOR.
+    function cambioColor(evento) {
+    	var x = evento.pageX - pantalla.offsetLeft;
+    	var y = evento.pageY - pantalla.offsetTop;
+
+    	if ((x < 50 && x > 0) && (y < 50)) {
+    		alert("Cambio a rojo");
+    		color = 'red';
+    	}
+
+    	if ((x < 100 && x > 50) && (y < 50)) {
+    		alert("Cambio a verde");
+    		color = 'green';
+    	}
+
+    	if ((x < 150 && x > 100) && (y < 50)) {
+    		alert("Cambio a azul");
+    		color = 'blue';
+    	}
+    }
+
+    // ACA FUNCION PARA PODER DECIR SI PUEDE ESCRIBIR EN EL AREA DESIGNADA O NO.
+    function puedediseniarArea(xCoordenada, yCoordenada) {
+    	if (xCoordenada >= 0 && (xCoordenada < (3*50+5)) && 
+            (yCoordenada >=0 && yCoordenada < (50+5))) {
+
+            return false;
+
+        } else {
+
+            return true;
+
+        }
+    }
+
+    // ACA LO QUE HACEMOS ES PARA CAPTURAR EL MOVIMIENTO DEL MOUSE PARA SABER SI ESTAMOS SOBRE LA PALETA DE COLORES QUE NO PODEMOS DIBUJAR O NO.
+    function capturarMovimientoDelMouse(evento){
+
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+
+        if (puedediseniarArea(x,y)) {
+
+                dibujarCirculo(x, y, color);
+
+        }
+    }
+
+
+    function habilitarDibujar() {
+
+        puedoDibujar = true;
+    }
+
+    function deshabilitarDibujar() {
+
+        puedoDibujar = false;
+    }
+
+    pantalla.onmousemove = capturarMovimientoDelMouse;
+
+    pantalla.onmousedown = habilitarDibujar;
+
+    pantalla.onmouseup = deshabilitarDibujar;
+    
+    pantalla.onclick = cambioColor;
+    
+    seleccionarColor(0, 0,"red");
+    seleccionarColor(50, 0,"green");
+    seleccionarColor(100, 0,"blue");
+</script>

@@ -1,0 +1,58 @@
+<canvas width="600" height="400"></canvas>
+	
+
+<script>
+	
+	var pantalla = document.querySelector("canvas");
+	// ESTA VARIABLE SIGNIFICA QUE VA A TRAER TODO EL CONTENIDO QUE VA A ESTAR EN LA VARIABLE PANTALLA, PONIENDO EN QUE DIMENSION ESTAS TRABAJANDO, EN ESTE CASO 2D.
+	var pincel = pantalla.getContext("2d");
+	
+	// BANDERA DE ARGENTINA.
+	// ESTE CODIGO LO QUE HACE ES PONER EL COLOR DEL QUE QUEREMOS.
+	pincel.fillStyle = "lightblue"; // es una propiedad (le paso algun valor).
+	// PRIMERO SE COLOCA EL .fillStyle PARA ESTABLECER EL COLOR Y LUEGO EJECUTAMOS EL fill.Rect, SI NO HACEMOS ESO EL COLOR POR DEFECTO ES EL NEGRO Y SE VA A RELLENAR CON ESE.
+
+	// ESTE CODIGO LO QUE VA A HACER ES RELLENAR UN RECTANGULO QUE NOSOTROS LE INDIQUEMOS MEDIANTE 4 ARGUMENTOS.
+	// SE TOMA COMO UN EJE CARTECIANO, SABIENDO ESO LE PASAMOS LAS POSICIONES COMO ARGUMENTOS EN DONDE QUEREMOS QUE SE PARE Y RELLENE.
+	// PRIMERO SE PASAN LAS POSICIONES (ancho y largo) Y SE PASA CUANTO QUIERE QUE SE DESPLACE A LO ANCHO Y ALTO.
+	pincel.fillRect(0, 0, 600, 133.33); // es una funcion (le paso argumentos).
+
+
+	pincel.fillStyle = "white";
+	pincel.fillRect(0, 133.33, 600, 266.66);
+
+	pincel.fillStyle = "lightblue";
+	pincel.fillRect(0, 266.66, 600, 400);
+
+
+	/* PARA HACER UN TRIAGULO.
+	pincel.fillStyle = "yellow";
+	pincel.beginPath(); // ESTA INSTRUCCION LO QUE HACES ES INICIAR UN CAMINO, EL PINCEL SE VA A PODER VIAJAR POR CUALQUIER LADO DE LA PIZARRA SOCMO SIGUIENDO UN MAPA
+	// Y CON ESTA INSTRUCCION EL PINCEL SE MUEVE. LE PASAMOS LOS ARGUMENTOS, PRIMERO EL ANCHO Y DESPUES EL LARGO.
+	pincel.moveTo(300, 200);
+	pincel.lineTo(200, 400); // CON ESTA DIBUJAMOS UNA LINEA DE TAL PUNTO A OTRO.
+	pincel.lineTo(400, 400);
+	pincel.fill(); // ESTE ES PARA QUE RELLENE LA FORMA QUE SE FORMO.
+	*/
+
+
+	// PARA HACER UN CIRCULO EN EL CENTRO DE LA BANDERA.
+	pincel.fillStyle = "yellow";
+	pincel.beginPath();
+	pincel.arc(300, 200, 50, 0, 2*3.14); //ESTA ES PARA DIBUJAR CIRCUFERENCIAS.(posicion inicial, radio(tamaño), angulo inicial, angulo final(2 veces PI)).
+	pincel.fill();
+
+
+
+
+	/* BANDERA DE BOCA.
+	pincel.fillStyle = "blue";
+	pincel.fillRect(0, 0, 200, 400);
+
+	pincel.fillStyle = "yellow";
+	pincel.fillRect(200, 0, 200, 400);
+
+	pincel.fillStyle = "blue";
+	pincel.fillRect(400, 0, 200, 400);
+	*/
+</script>
